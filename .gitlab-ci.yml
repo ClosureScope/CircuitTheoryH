@@ -1,0 +1,31 @@
+image: ghcr.io/typst/typst:latest
+
+stages:
+  - build
+  - release
+
+build_pdf:
+  stage: build
+  script:
+    - typst compile notebook.typ
+  artifacts:
+    paths:
+      - notebook.pdf
+    expire_in: 1 week
+
+create_release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  script:
+    - echo "Creating release for commit $CI_COMMIT_SHORT_SHA..."
+  release:
+    name: 'Latest PDF'
+    description: 'This version is automatically compiled by GitLab CI/CD.'
+    tag_name: 'latest'
+    ref: '$CI_COMMIT_SHA'
+    assets:
+      links:
+        - name: 'Download Latest PDF'
+          url: '${CI_PROJECT_URL}/-/jobs/artifacts/${CI_COMMIT_REF_NAME}/raw/notebook.pdf?job=build_pdf'
