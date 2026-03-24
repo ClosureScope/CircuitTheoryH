@@ -1,0 +1,37 @@
+name: Auto-Compile and Release PDF
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Compile Typst to PDF
+        run: typst compile notebook.typ
+
+      - name: Generate Automated Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: "Latest Notes"
+          body: |
+            This is an automated build of the latest notes.
+            Last updated: ${{ github.event.head_commit.timestamp }}
+          files: |
+            *.pdf
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
