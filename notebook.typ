@@ -1,8 +1,8 @@
 #set text(lang: "zh", region: "cn")
 #import "template.typ": *
-#set text(font: (font-en, ..font-song))
-#show strong: set text(font: (font-en, ..font-hei), weight: "regular")
-#show emph: text.with(font: (font-en, ..font-kai), style: "normal")
+#set text(font: (font-en, font-song))
+#show strong: set text(font: (font-en, font-hei), weight: "regular")
+#show emph: text.with(font: (font-en, font-kai), style: "normal")
 #show: frame-style(styles.hint)
 #show: ilm.with(
   title: [电路理论],
@@ -496,7 +496,7 @@ $R$称回路电阻矩阵，为对称矩阵。
 （非对角线）互电阻：回路间公共支路电阻
 
 $U_s$：回路中所有电压源的代数和（回路电流方向相同为负，相反为正——与KVL正好相反）
-#note[][可使网孔电流取向一致，此时互电阻都为负。但外网孔需取向相反，才能使互电阻恒为负。]
+#note[][可使网孔电流取向都为顺时针，此时互电阻恒负。但外网孔需取向逆时针，才能使互电阻恒负。]
 #note[含受控源][将受控源当作独立电源处理，多出一个未知量，移项后回路电阻矩阵对称性被破坏。]
 #note[含无伴电流源][
   + 增加未知量：增设电流源电压为未知量，增加电流源支路方程。

@@ -5,9 +5,9 @@
 
 #let font-en = "Libertinus Serif"
 
-#let font-song = ("SimSun", "STSong")
-#let font-hei = ("SimHei",)
-#let font-kai = ("KaiTi", "STKaiti")
+#let font-song = "Noto Serif SC"
+#let font-hei = "Noto Sans SC"
+#let font-kai = "LXGW WenKai"
 
 #let (
   // Math & Logic (Blues/Indigos)
