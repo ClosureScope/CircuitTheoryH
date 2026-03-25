@@ -23,8 +23,7 @@ jobs:
         run: |
           mkdir -p ~/.local/share/fonts
 
-          # Noto Serif SC — all weights (Regular + Bold needed for headings)
-          # Download from notofonts GitHub — registers as "Noto Serif SC", matching Windows/Google Fonts naming
+          # Noto Serif SC — all weights
           for weight in ExtraLight Light Regular Medium SemiBold Bold; do
             wget -q -O ~/.local/share/fonts/NotoSerifSC-${weight}.otf \
               "https://github.com/notofonts/noto-cjk/raw/main/Serif/SubsetOTF/SC/NotoSerifSC-${weight}.otf"
