@@ -26,7 +26,8 @@ jobs:
           wget -q -P /usr/local/share/fonts/ \
             "https://github.com/lxgw/LxgwWenKai/releases/latest/download/LXGWWenKai-Regular.ttf"
           wget -qO- "https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.tar.xz" \
-            | tar -xJ -C /usr/local/share/fonts/ --wildcards "*/static/OTF/LibertinusSerif-Regular.otf" --strip-components=3
+            | tar -xJ -C /tmp/libertinus/
+          find /tmp/libertinus -name "LibertinusSerif-Regular.otf" -exec cp {} /usr/local/share/fonts/ \;
           fc-cache -fv
 
       - name: Compile Typst to PDF
