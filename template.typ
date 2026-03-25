@@ -7,7 +7,7 @@
 
 #let font-song = "Noto Serif SC"
 #let font-hei = "Noto Sans SC"
-#let font-kai = "LXGW WenKai"
+#let font-kai = "FandolKai"
 
 #let (
   // Math & Logic (Blues/Indigos)
