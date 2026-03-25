@@ -21,15 +21,22 @@ jobs:
 
       - name: Install Fonts
         run: |
-          sudo apt-get update
-          sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
           mkdir -p ~/.local/share/fonts
+
+          # Noto Serif SC & Noto Sans SC
+          wget -q -O ~/.local/share/fonts/NotoSerifSC-Regular.otf "https://github.com/notofonts/noto-cjk/raw/main/Serif/SubsetOTF/SC/NotoSerifSC-Regular.otf"
+          wget -q -O ~/.local/share/fonts/NotoSansSC-Regular.otf "https://github.com/notofonts/noto-cjk/raw/main/Sans/SubsetOTF/SC/NotoSansSC-Regular.otf"
+
+          # FandolKai
           wget -q -O /tmp/fandol.zip "https://mirrors.ctan.org/fonts/fandol.zip"
           unzip -qo /tmp/fandol.zip "fandol/FandolKai-Regular.otf" -d /tmp/
           cp /tmp/fandol/FandolKai-Regular.otf ~/.local/share/fonts/
+
+          # Libertinus Serif
           wget -q -O /tmp/Libertinus.tar.xz "https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.tar.xz"
           tar -xJf /tmp/Libertinus.tar.xz -C /tmp/ "Libertinus-7.040/static/OTF/LibertinusSerif-Regular.otf"
           cp /tmp/Libertinus-7.040/static/OTF/LibertinusSerif-Regular.otf ~/.local/share/fonts/
+
           fc-cache -fv
 
       - name: Compile Typst to PDF
