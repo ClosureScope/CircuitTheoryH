@@ -23,11 +23,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
-          wget -q -P /usr/local/share/fonts/ \
+          mkdir -p ~/.local/share/fonts
+          wget -q -P ~/.local/share/fonts/ \
             "https://github.com/lxgw/LxgwWenKai/releases/latest/download/LXGWWenKai-Regular.ttf"
-          wget -qO- "https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.tar.xz" \
-            | tar -xJ -C /tmp/libertinus/
-          find /tmp/libertinus -name "LibertinusSerif-Regular.otf" -exec cp {} /usr/local/share/fonts/ \;
+          wget -q -O /tmp/Libertinus.tar.xz \
+            "https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.tar.xz"
+          tar -xJf /tmp/Libertinus.tar.xz -C /tmp/ \
+            "Libertinus-7.040/static/OTF/LibertinusSerif-Regular.otf"
+          cp /tmp/Libertinus-7.040/static/OTF/LibertinusSerif-Regular.otf ~/.local/share/fonts/
           fc-cache -fv
 
       - name: Compile Typst to PDF
