@@ -1063,14 +1063,71 @@ $ G_n u_n = i_(S n) $
   $ A = A_1 A_2 $
   #image("assets/image-67.png")
   $ hat(A) = hat(A)_2 hat(A)_1 $
-+ 有效性测试：级联不会破坏端口条件，必有效。
++ 有效性测试：级联不会破坏端口条件，必然有效。
 ==== 端接连接
++ 端接
+  #image("assets/image-68.png")
++ 参数
+  #image("assets/image-69.png")
+  $ u_1 = r_11 i_1 + r_12 i_2 $
+
+  $ u_2 = r_21 i_1 + r_22 i_2 $
+
+  $ u_1 = u_S - R_S i_1 $
+
+  $ u_2 = - R_L i_2 $
++ 输入电阻
+  #image("assets/image-70.png")
+  输入电阻越大越好
+  $ R_i = u_1 / i_1 = (r_11 R_L + Delta_r) / (r_22 + R_L) $
++ 输出电阻
+  #image("assets/image-71.png")
+  输出电阻越小越好
+  $ R_o = u_2 / i_2 = (r_22 R_S + Delta_r) / (r_11 + R_S) $
++ 电压传输比（电压放大倍数）
+  $ A_u = u_2 / u_1 = (r_21 R_L) / (r_11 R_L + Delta_r) $
++ 转移电压比 （电压增益）
+  $ H_u = u_2 / u_S = A_u (R_i) / (R_S + R_i) $
++ 电流传输比（电流放大倍数）
+  $ A_i = i_2 / i_1 = -(r_21) / (r_22 + R_L) $
++ 转移电流比（电流增益）
+  $ H_i = i_2 / i_S = A_i (G_i) / (G_S + G_i) $
+
 === 含独立电源端口特性
 ==== $R$端口特性
+$ mat(u_1; u_2) = mat(r_11 r_12; r_21 r_22) mat(i_1; i_2) + mat(u_(1o c); u_(2o c))_(i_1 = 0, i_2 = 0) $
+#align(center)[#image("assets/image-72.png")]
 ==== $G$端口特性
+$ mat(i_1; i_2) = mat(g_11 g_12; g_21 g_22) mat(u_1; u_2) + mat(i_(1s c); i_(2s c))_(u_1 = 0, u_2 = 0) $
+#align(center)[#image("assets/image-73.png")]
 ==== $H$端口特性
+$ mat(u_1; i_2) = mat(h_11 h_12; h_21 h_22) mat(i_1; u_2) + mat(u_(1o c); i_(2s c))_(i_1 = 0, u_2 = 0) $
+#align(center)[#image("assets/image-77.png")]
 ==== $hat(H)$端口特性
+$
+  mat(i_1; u_2) = mat(hat(h)_11 hat(h)_12; hat(h)_21 hat(h)_22) mat(u_1; i_2) + mat(i_(1s c); u_(2o c))_(u_1 = 0, i_2 = 0)
+$
+#align(center)[#image("assets/image-74.png")]
 ==== $A$端口特性
+$ mat(u_1; i_1) = mat(a_11 a_12; a_21 a_22) mat(u_2; -i_2) + mat(tilde(u)_1; tilde(i)_1) $
+#align(center)[#image("assets/image-75.png")]
 ==== $hat(A)$端口特性
-=== 电流分析
+$ mat(u_2; -i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; i_1) + mat(tilde(u)_2; -tilde(i)_2) $
+#align(center)[#image("assets/image-76.png")]
+=== 电路分析
++ 端口特性方程
++ 双口电路的等效电路
 = 非线性电阻电路分析
+== 二极管电路
+=== 二极管特性
++ 实际二极管
+  #image("assets/image-78.png")
++ 理想二极管
+  - 正向导通时，正向管压降为零，相当于开关闭合
+  - 反向截止时，反向电流降为零，相当于开关断开
+  #image("assets/image-79.png")
+=== 电路分析
++ 理想二极管电路分析
+
+  将二极管断开，分析二极管两端电位的高低
+  #note[优先导通法][共阴极结构或共阳极结构中，压降大的优先导通。]
