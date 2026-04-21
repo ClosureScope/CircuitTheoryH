@@ -1131,3 +1131,197 @@ $ mat(u_2; -i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; i_1) +
 
   将二极管断开，分析二极管两端电位的高低
   #note[优先导通法][共阴极结构或共阳极结构中，压降大的优先导通。]
+
+#pagebreak()
+#align(left + horizon)[
+  #text(size: 2em, weight: "bold")[第二篇　动态电路]
+]
+#pagebreak()
+
+= 动态电路的时域分析
+== 动态元件
+=== 电容元件
++ 电容元件
+  #definition[电容元件][
+
+    一个二端元件，任一时刻$t$的端电压$u$和元件上的电荷$q$能用$u-q$平面上的曲线表示。
+    #image("assets/image-80.png")
+  ]
+
+==== 线性非时变电容元件
++ 特性方程
+
+  $ q(t) = C u(t) $
+
+  $ u(t) = S q(t) $
+
+  $C$是电容，单位：法拉 ($F$)
+
+  $S = 1/C$是倒电容，单位：倒法拉 ($F^(-1)$)
+
++ 大小
+  $ C = (epsilon S) / d $
++ 伏安特性
+  + 动态特性
+    $ i = C (d u) / (d t) $
+    #note[][电流是电压的线性函数。]
+  + 记忆特性
+    $ u = u(t_0) + 1/C integral_(t_0)^t i(tau) d tau $
+    #note[][电压能记忆电流的历史。]
+  + 连续性
+    $ Delta t -> 0, Delta u -> 0 $
+    #note[][电容电压不会跳变。]
+  + 初始值
+    $ u = u(0) + 1/C integral_(0)^t i(tau) d tau $
+    #note[][只有当$u(0) = 0$时，电压才是电流的线性函数。]
+  + 等效变换
+    + 非零初始电压电容元件的等效电路
+      #image("assets/image-81.png")
+    + 零初始电压电容元件的并联
+      $ C_(e q) = C_1 + dots + C_n $
+      并联分流公式：$ i_k = C_k / C_(e q) i $
+    + 零初始电压电容元件的串联
+      $ S(e q) = S_1 + dots + S_n $
+      串联分压公式：$ u_k = S_k / S_(e q) u $
+
+==== 电容元件的能量
++ 瞬时功率
+  $ p_c = u i $
++ 能量
+  $ w_C (t_0, t) = integral_0^(q(t)) f(q) d q $
+  #image("assets/image-82.png")
+  + 如果电容元件的库伏特性曲线通过原点位于第一或第三象限，它所储存的能量总是正的，这种电容元件称为无源电容元件。
+  + 线性非时变电容
+    $ w_C (t_0, t) = 1 / 2 C u^2 $
+
+#note[][对于不连续函数，用$epsilon(t), r(t), delta(t)$来描述。]
+
+#note[积分运算电路][
+  #image("assets/image-83.png")
+  $ u_o = - 1 / (R_1 C) integral_(- infinity)^t u_i d t $
+]
+
+#note[微分运算电路][
+  #image("assets/image-84.png")
+  $ u_o = - R_F C (d u_i) / (d t) $
+]
+=== 电感元件
++ 电感元件
+  #definition[电感元件][
+
+    一个二端元件，任一时刻$t$的磁通$Psi$与流过它的电流$i$能用$Psi-i$平面上的曲线表示。
+    #image("assets/image-85.png")
+  ]
+==== 线性非时变电感元件
++ 特性方程
+  $ Psi(t) = L i(t) $
+  $ i(t) = Gamma Psi(t) $
+  $L$是电感，单位：亨利 ($H$)
+
+  $Gamma = L^(-1)$是电导，单位：倒亨利 ($H^(-1)$)
++ 大小
+  $ L = (mu S N^2) / l $
++ 伏安特性
+  + 动态特性
+    $ u = L (d i) / (d t) $
+    #note[][电压是电流的线性函数。]
+  + 记忆特性
+    $ i = i(t_0) + 1/L integral_(t_0)^t u(tau) d tau $
+    #note[][电流能记忆电压的历史。]
+  + 连续性
+    $ Delta t -> 0, Delta i -> 0 $
+    #note[][电感电流不会跳变。]
+  + 初始值
+    $ i = i(0) + 1/L integral_(0)^t u(tau) d tau $
+    #note[][只有当$i(0) = 0$时，电流才是电压的线性函数。]
+  + 等效变换
+    + 非零初始电流电感元件的等效电路
+      #image("assets/image-86.png")
+    + 零初始电流电感元件的串联
+      $ L_(e q) = L_1 + dots + L_n $
+      串联分压公式：$ u_k = L_k / L_(e q) u $
+    + 零初始电流电感元件的并联
+      $ Gamma_(e q) = Gamma_1 + dots + Gamma_n $
+      并联分流公式：$ i_k = Gamma_k / Gamma_(e q) i $
+
+==== 电感元件的能量
++ 瞬时功率
+  $ p_L = u i $
++ 能量
+  $ w_L (t_0, t) = integral_0^(Psi(t)) f(Psi) d Psi $
+  #image("assets/image-87.png")
+  + 如果电感元件的韦安特性曲线通过原点位于第一或第三象限，它所储存的能量总是正的，这种电感元件称为无源电感元件。
+  + 线性非时变电感
+    $ w_L (t_0, t) = 1 / 2 L i^2 $
+
+=== 耦合电感元件
++ 耦合电感元件
+  #image("assets/image-88.png")
+==== 线性耦合电感元件
++ 特性方程
+  + 矩阵形式
+    $ mat(Psi_1; Psi_2) = mat(Psi_11 + Psi_12; Psi_21 + Psi_22) = mat(L_1 M; M L_2) mat(i_1; i_2) $
+    $L_1, L_2$：自感，恒为正
+
+    $M$：互感，可正可负
+  + 同名端
+    #image("assets/image-89.png")
+  + 耦合系数
+    $ k := sqrt(Psi_12 / Psi_11 Psi_21 / Psi_22) = abs(M) / sqrt(L_1 L_2) $
+  + 三线圈耦合
+    $ mat(Psi_1; Psi_2; Psi_3) = mat(L_11, M_12, M_13; M_21, L_22, M_23; M_31, M_32, L_33) mat(i_1; i_2; i_3) $
++ 伏安特性
+  $ mat(u_1; u_2) = mat(u_11 + u_12; u_21 + u_22) = mat(L_1, M; M, L_2) mat((d i_1)/(d t); (d i_2)/(d t)) $
+  $
+    mat(i_1; i_2) = mat(Gamma_11, Gamma_12; Gamma_21, Gamma_22) mat(integral_0^t u_1(tau) d tau; integral_0^t u_2(tau) d tau)
+  $
+  $Psi = L^(-1)$：倒电感矩阵
++ 去耦等效
+  + 受控电压源等效
+    #image("assets/image-90.png")
+  + 受控电流源等效
+    #image("assets/image-91.png")
+  + T形等效
+
+    当两个耦合电感元件有公共端钮时
+    #stack(dir: ltr, spacing: 1em, image("assets/image-92.png"), image("assets/image-93.png"))
+    #note[][
+      + 同名端相接时，$M>0$；异名端相接时，$M<0$
+      + T形去耦增加了节点，但没有增加回路，适合回路分析法
+    ]
+  + $Pi$形等效
+
+    当两个耦合电感元件有公共端钮时
+    #stack(dir: ltr, spacing: 1em, image("assets/image-94.png"), image("assets/image-95.png"))
+
+    #note[][
+
+      + 同名端相接时，$Gamma < 0$；异名端相接时，$Gamma > 0$
+      + $Pi$形去耦增加了回路，但没有增加节点，适合节点分析法
+    ]
++ 串联等效
+  #image("assets/image-96.png")
+  $ L_(e q) = L_1 + L_2 + 2 M $
+  #note[][
+    顺接时，$M > 0$；反接时，$M < 0$
+  ]
++ 并联等效
+  #image("assets/image-97.png")
+  $ Gamma_(e q) = Gamma_1 + Gamma_2 + 2 Gamma $
+
+  #note[][
+    同侧并联时，$Gamma < 0$；异侧并联时，$Gamma > 0$
+  ]
+  $ L_(e q) = 1/Gamma_(e q) = (L_1 L_2 - M^2)/(L_1 + L_2 - 2 M) $
+==== 非线性耦合电感元件
+==== 耦合电感元件的能量
+
+== 动态电路方程
+== 动态电路的初始状态和变量初始值
+== 一阶动态电路的零输入响应
+== 一阶动态电路的零状态响应
+== 一阶动态电路的全响应
+== 二阶动态电路的响应
+
+= 动态电路的复频域分析
+
