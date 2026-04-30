@@ -1335,8 +1335,10 @@ $ mat(u_2; -i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; i_1) +
   + 发生换路
   根本原因是电场能和磁场能不能突变
 === 换路定律
-$ u_C (0_+) = u_C (0_-) $
-$ i_L (0_+) = i_L (0_-) $
+#theorem[换路定律][
+  $ u_C (0_+) = u_C (0_-) $
+  $ i_L (0_+) = i_L (0_-) $
+]
 === 初始值
 + 初始值：$t = 0_+$的值
 + 原始值：$t = 0_-$的值
@@ -1374,8 +1376,70 @@ $ i_L (0_+) = i_L (0_-) $
 
 
 == 一阶动态电路的零输入响应
+=== 一阶RC电路的零输入响应
++ 零输入响应
+  #image("assets/image-98.png")
+  $ u_C = U e^(-t/tau) $
++ 时间常数
+  $ tau = R C $
+  + 暂态时间
 
+    $t = tau$时，$u_C = U e^(-1) = 36.8% U$
+
+    $t = 4 tau ~ 5 tau$时，$u_c -> 0$
+  + 物理意义
+    $tau$越大，放电越慢
+  + 几何意义
+    + 起始点法
+      #image("assets/image-99.png")
+    + 任意点法一
+      #image("assets/image-100.png")
+      $ (d u_C) / (d t) = - (u_C (t_0)) / tau $
+    + 任意点法二
+      #image("assets/image-101.png")
+      $ (u_C (t_0 + tau)) / (u_C (t_0)) = e^(-1) = 36.8% $
+  + 固有频率
+    $ s = -1/tau = -1/(R C) $
++ 能量
+  $ W_R = W_C = 1/2 C U^2 $
+=== 一阶RL电路的零输入响应
++ 零输入响应
+  #image("assets/image-102.png")
+  $ i_L = I e^(-t/tau) $
++ 时间常数
+  $ tau = L / R $
+  固有频率：
+  $ s = -1/tau = -R/L $
 == 一阶动态电路的零状态响应
+=== 一阶电路在直流电源激励下的零状态响应
++ 零状态响应
+  #image("assets/image-103.png")
+  $ u_C = (-U e^(-t/(R C)) + U) epsilon(t) $
++ 能量
+  $ W_S = W_C + W_R = C U^2 $
+=== 一阶电路在正弦电源激励下的零状态响应
++ 零状态响应
+  #image("assets/image-104.png")
+  $ u_C = [-U_m cos psi e^(-t/(R C)) + U_m cos(omega t + psi)] epsilon(t) $
+  $ i_R = $
+  其中
+  $ U_m = I_m / sqrt((omega C)^2 + (1/R)^2) $
+  $ psi = phi - arctan omega R C $
++ 分析
+
+  $t=0_+$，$u_C = 0$
+
+  $psi = pi / 2$，暂态分量为0，直接进入稳态
+
+  $psi = 0$，如果$tau$远大于输入信号周期，则经过半个周期左右的时间$u_C (pi) approx -2 U_m$，最大瞬时绝对值接近于稳态电压振幅的2倍。
+=== 一阶电路的阶跃响应
++ 单位阶跃响应
+  #image("assets/image-105.png")
+  $ s(t) = u_C = R(1-e^(-t/(R C))) epsilon(t) $
++ 单位延迟阶跃响应
+
+  非时变特性：
+  $ s(t - t_0) $
 == 一阶动态电路的全响应
 == 二阶动态电路的响应
 
