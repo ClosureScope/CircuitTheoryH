@@ -1427,8 +1427,8 @@ $ mat(u_2; i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; -i_1) +
 + 零状态响应
   #image("assets/image-104.png")
   $ u_C = [-U_m cos psi e^(-t/(R C)) + U_m cos(omega t + psi)] epsilon(t) $
-  $ i_R = $
   其中
+  $ I_m = sqrt((-omega C U_m)^2 + (U_m / R)^2) $
   $ U_m = I_m / sqrt((omega C)^2 + (1/R)^2) $
   $ psi = phi - arctan omega R C $
 + 分析
@@ -1440,13 +1440,56 @@ $ mat(u_2; i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; -i_1) +
   $psi = 0$，如果$tau$远大于输入信号周期，则经过半个周期左右的时间$u_C (pi) approx -2 U_m$，最大瞬时绝对值接近于稳态电压振幅的2倍。
 === 一阶电路的阶跃响应
 + 单位阶跃响应
-  #image("assets/image-105.png")
+  #image("assets/image-105.png", width: 25%)
   $ s(t) = u_C = R(1-e^(-t/(R C))) epsilon(t) $
 + 单位延迟阶跃响应
 
   非时变特性：
   $ s(t - t_0) $
+=== 一阶电路的冲激响应
++ 单位冲激响应
+  #image("assets/image-106.png")
+  $ h(t) = u_C = 1/C e^(-t/(R C)) epsilon(t) $
++ 冲激响应与阶跃响应的关系
+  $ h(t) = (d s(t))/(d t) $
+  $ s(t) = integral_(-infinity)^t h(tau) d tau $
+=== 对任意输入的零状态响应（卷积积分）
+$ y(t) = integral_0^t f(tau) h(t - tau) d tau $
 == 一阶动态电路的全响应
+=== 一阶电路在阶跃电源激励下的全响应
++ 全响应：由输入激励和原始状态共同引起的响应
++ 激励的叠加性
+
+  全响应 = 零输入响应 + 零状态响应
+  $ u_C = U_0 e^(-t/(R C)) + R I_S (1 - e^(-t/(R C))) $
++ 响应的叠加性
+
+  全响应 = 暂态响应 + 稳态响应
+  $ u_C = R i_S + (U_0 - R i_S) e^(-t/(R C)) $
+=== 一阶电路的经典方法
++ 经典法：微分方程
+=== 一阶电路的三要素法
++ 三要素法
+
+  全响应 = 齐次解 + 特解
+  $ y(t) = [y(0_+) - y_S (0_+)] e^(-t/tau) + y_S (infinity) $
+  直流或阶跃电源激励下
+  $ y(t) = [y(0_+) - y(infinity)] e^(-t/tau) + y(infinity) $
+  #note[三要素法的适用条件][
+    + 线性定常电路
+    + 有损耗的一阶线性电路
+    + 电路在$t=0$时换路
+  ]
++ 三要素的计算
+  + 稳态值$y(infinity)$：电路分析法
+  + 初始值$y(0_+)$：换路定律或电荷守恒，磁链守恒
+  + 时间常数$tau$
+    $ tau = R_0 C_0 $
+    $ tau = L_0 / R_0 $
+
+    $R_0$为换路后电路除源后从储能元件两端看过去的等效电阻。
+
+    $C_0, L_0$为储能元件的等效电容，等效电感。
 == 二阶动态电路的响应
 
 = 动态电路的复频域分析
