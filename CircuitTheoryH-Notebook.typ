@@ -1490,7 +1490,38 @@ $ y(t) = integral_0^t f(tau) h(t - tau) d tau $
     $R_0$为换路后电路除源后从储能元件两端看过去的等效电阻。
 
     $C_0, L_0$为储能元件的等效电容，等效电感。
+#note[][$tau$与初始状态无关。]
+#note[][多储能元件中，计算时间常数时可以从电阻看进去求等效电容/电感]
 == 二阶动态电路的响应
+=== 二阶RLC电路的零输入响应
++ 二阶微分方程求解
+  #image("assets/image-107.png")
+  $ L C (d^2 i_L) / (d t^2) + L / R (d i_L)/(d t) + i_L = 0 $
+  特征根（实部恒负）：
+  $ s_(1, 2) = - alpha + sqrt(alpha^2 - omega^2) $
+  衰减系数：$ alpha = 1/(2 R C) $
+  谐振频率：$ omega_0 = 1 / sqrt(L C) $
++ 零输入响应
+  + 当$Delta > 0$，即$alpha > omega_0$时，$R < 1/2 sqrt(L / C)$，过阻尼
 
+    $s_1 < 0, s_2 < 0, s_1 != s_2$为两个不相等的负实根
+    #image("assets/image-108.png")
+  + 当$Delta = 0$，即$alpha = omega_0$时，$R = 1/2 sqrt(L / C)$，临界阻尼
+
+    $s_1 = s_2 = - alpha$为两个相等的负实根
+    #image("assets/image-109.png")
+  + 当$Delta < 0$，即$alpha < omega_0$时，$R > 1/2 sqrt(L / C)$，欠阻尼
+
+    $s_(1, 2)$为一对负实部共轭复根
+    #image("assets/image-110.png")
+  + 当$Delta < 0$，且$alpha = 0$，即$R = infinity$，无阻尼
+
+    $s_(1, 2)$为一对共轭虚根
+  + 当$alpha < 0$时，发散
+
+    $s_(1, 2)$实部恒正
+    + $Delta < 0$，振荡发散
+    + $Delta = 0$，临界发散
+    + $Delta > 0$，单调发散
 = 动态电路的复频域分析
 
