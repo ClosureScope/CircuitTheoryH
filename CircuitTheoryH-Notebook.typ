@@ -1384,7 +1384,7 @@ $ mat(u_2; i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; -i_1) +
 == 一阶动态电路的零输入响应
 === 一阶RC电路的零输入响应
 + 零输入响应
-  #image("assets/image-98.png")
+  #align(center)[#image("assets/image-98.png")]
   $ u_C = U e^(-t/tau) $
 + 时间常数
   $ tau = R C $
@@ -1410,7 +1410,7 @@ $ mat(u_2; i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; -i_1) +
   $ W_R = W_C = 1/2 C U^2 $
 === 一阶RL电路的零输入响应
 + 零输入响应
-  #image("assets/image-102.png")
+  #align(center)[#image("assets/image-102.png")]
   $ i_L = I e^(-t/tau) $
 + 时间常数
   $ tau = L / R $
@@ -1419,13 +1419,13 @@ $ mat(u_2; i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; -i_1) +
 == 一阶动态电路的零状态响应
 === 一阶电路在直流电源激励下的零状态响应
 + 零状态响应
-  #image("assets/image-103.png")
+  #align(center)[#image("assets/image-103.png")]
   $ u_C = (-U e^(-t/(R C)) + U) epsilon(t) $
 + 能量
   $ W_S = W_C + W_R = C U^2 $
 === 一阶电路在正弦电源激励下的零状态响应
 + 零状态响应
-  #image("assets/image-104.png")
+  #align(center)[#image("assets/image-104.png")]
   $ u_C = [-U_m cos psi e^(-t/(R C)) + U_m cos(omega t + psi)] epsilon(t) $
   其中
   $ I_m = sqrt((-omega C U_m)^2 + (U_m / R)^2) $
@@ -1440,7 +1440,7 @@ $ mat(u_2; i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; -i_1) +
   $psi = 0$，如果$tau$远大于输入信号周期，则经过半个周期左右的时间$u_C (pi) approx -2 U_m$，最大瞬时绝对值接近于稳态电压振幅的2倍。
 === 一阶电路的阶跃响应
 + 单位阶跃响应
-  #image("assets/image-105.png", width: 25%)
+  #align(center)[#image("assets/image-105.png", width: 25%)]
   $ s(t) = u_C = R(1-e^(-t/(R C))) epsilon(t) $
 + 单位延迟阶跃响应
 
@@ -1448,7 +1448,7 @@ $ mat(u_2; i_2) = mat(hat(a)_11 hat(a)_12; hat(a)_21 hat(a)_22) mat(u_1; -i_1) +
   $ s(t - t_0) $
 === 一阶电路的冲激响应
 + 单位冲激响应
-  #image("assets/image-106.png")
+  #align(center)[#image("assets/image-106.png")]
   $ h(t) = u_C = 1/C e^(-t/(R C)) epsilon(t) $
 + 冲激响应与阶跃响应的关系
   $ h(t) = (d s(t))/(d t) $
@@ -1495,33 +1495,136 @@ $ y(t) = integral_0^t f(tau) h(t - tau) d tau $
 == 二阶动态电路的响应
 === 二阶RLC电路的零输入响应
 + 二阶微分方程求解
-  #image("assets/image-107.png")
+  #align(center)[#image("assets/image-107.png")]
   $ L C (d^2 i_L) / (d t^2) + L / R (d i_L)/(d t) + i_L = 0 $
   特征根（实部恒负）：
   $ s_(1, 2) = - alpha + sqrt(alpha^2 - omega^2) $
   衰减系数：$ alpha = 1/(2 R C) $
   谐振频率：$ omega_0 = 1 / sqrt(L C) $
 + 零输入响应
-  + 当$Delta > 0$，即$alpha > omega_0$时，$R < 1/2 sqrt(L / C)$，过阻尼
-
-    $s_1 < 0, s_2 < 0, s_1 != s_2$为两个不相等的负实根
-    #image("assets/image-108.png")
-  + 当$Delta = 0$，即$alpha = omega_0$时，$R = 1/2 sqrt(L / C)$，临界阻尼
-
-    $s_1 = s_2 = - alpha$为两个相等的负实根
-    #image("assets/image-109.png")
-  + 当$Delta < 0$，即$alpha < omega_0$时，$R > 1/2 sqrt(L / C)$，欠阻尼
-
-    $s_(1, 2)$为一对负实部共轭复根
-    #image("assets/image-110.png")
-  + 当$Delta < 0$，且$alpha = 0$，即$R = infinity$，无阻尼
-
-    $s_(1, 2)$为一对共轭虚根
-  + 当$alpha < 0$时，发散
-
-    $s_(1, 2)$实部恒正
-    + $Delta < 0$，振荡发散
-    + $Delta = 0$，临界发散
-    + $Delta > 0$，单调发散
+#align(center)[
+  #grid(
+    columns: (28%, 25%),
+    gutter: 2em,
+    align: center + horizon,
+    image("assets/image-108.png"), image("assets/image-110.png"),
+    [过阻尼/临界阻尼], [欠阻尼],
+  )
+]
+#align(center)[#image("assets/image-111.png")]
 = 动态电路的复频域分析
+== 拉普拉斯变换及其性质
+=== 拉普拉斯变换的定义
++ 拉氏变换
+  $ F(s) = cal(L)(f(t)) = integral_(0_-)^infinity f(t) e^(-s t) d t $
+  $s = sigma + j omega$是复频率，$f(t)$为原函数，$F(s)$为象函数
++ 常用函数的拉氏变换
+  #stack(
+    dir: ltr,
+    spacing: 3em,
+    three-line-table[
+      | 原函数 | 象函数 |
+      | --- | --- |
+      | $delta(t)$ | $1$ |
+      | $delta^((n)) (t)$ | $s^n$ |
+      | $epsilon(t)$ | $1/s$ |
+      | $A$ | $A/s$ |
+      | $t^n/n!$ | $1/s^(n+1)$ |
+      | $e^(-alpha t)$ | $1/(s + alpha)$ |
+      | $t^n / n! e^(-alpha t)$ | $1/(s + alpha)^(n+1)$ |
+    ],
+    three-line-table[
+      | 原函数 | 象函数 |
+      | --- | --- |
+      | $sin(omega t)$ | $omega/(s^2 + omega^2)$ |
+      | $cos(omega t)$ | $s/(s^2 + omega^2)$ |
+      | $e^(-alpha t) sin omega t$ | $omega/((s+alpha)^2 + omega^2)$ |
+      | $e^(-alpha t) cos omega t$ | $(s+alpha)/((s+alpha)^2 + omega^2)$ |
+      | $a e^(-alpha t) cos omega t + (b - a alpha)/omega e^(-alpha t) sin omega t$ | $(a s + b)/((s+alpha)^2 + omega)$ |
+      | $2 abs(K) e^(-alpha t) cos(omega t + phi_K)$ | $K/(s + alpha - j omega) + K^* /(s + alpha + j omega)$ |
+    ],
+  )
+=== 拉普拉斯变换的基本性质
++ 线性性质
+  $ cal(L)(a_1 f_1(t) + a_2 f_2(t)) = a_1 F_1(s) + a_2 F_2(s) $
++ 微分性质
+  $ cal(L)(d/(d t) f(t)) = s F(s) - f(0_-) $
+  $ cal(L)(f^((n)) (t)) = s^n F(s) - sum_(k=0)^(n-1) s^k f^((n-1-k)) (0_-) $
+  #note[][$f(t)$如果在$t=0$跳变，不影响$f(t)$的拉氏变换，影响$f^' (t)$的拉氏变换]
++ 积分性质
+  $ cal(L)(integral_(0_-)^t f(tau) d tau) = 1/s F(s) $
++ 时域平移性质（延迟定理）
+  $ cal(L)(f(t-tau)) = e^(-s tau) F(s) $
++ 频域平移性质
+  $ cal(L)(e^(alpha t) f(t)) = F(s-alpha) $
++ 初值定理
+  $ f(0_+) = lim_(s->oo) s F(s) $
++ 终值定理
+  $ f(oo) = lim_(s->0) s F(s) $
++ 卷积定理
+  $ cal(L)(f_1(t)*f_2(t)) = F_1(s) F_2(s) $
+== 拉普拉斯反变换
+$ f(t) = cal(L)^(-1) (F(s)) = 1/ (2 pi j) integral_(sigma-j oo)^(sigma+j oo) F(s) e^(s t) d s $
+=== 部分分式展开法
++ 有理分式表示
+  $ F(s) = P(s)/Q(s) = (b_m s^m + b_(m-1) s^(m-1) + ... + b_0) / (a_n s^n + a_(n-1) s^(n-1) + ... + a_0) $
++ 零极点表示
+  $ F(s) = P(s) / Q(s) = (b_m product_(i=1)^m (s-z_i)) / (a_n product_(j=1)^n (s-p_j)) $
+  $z_i$为零点，$p_j$为极点
+=== 有理函数真分式化
+长除法
+$ F(s) = P(s) / Q(s) = A(s) + B(s)/Q(s) $
+$ A(s) = c_0 + c_1 s + c_2 s^2 + ... $
+$ cal(L)^(-1) (A(s)) = c_0 delta(t) + c_1 delta^((1))(t) + c_2 delta^((2))(t) + ... $
+=== 单极点（实数）情况
+$ F(s) = B(s) / Q(s) = sum_(i=1)^n K_i / (s - p_i) $
+$ f(t) = cal(L)^(-1) (sum_(i=1)^n K_i / (s - p_i)) = sum_(i=1)^n K_i e^(p_i t) $
++ $ K_i = (s-p_i)F(s)|_(s=p_i) $
++ $ K_i = B(s) / (Q^((1))(s))|_(s=p_i) $
+=== 单极点（共轭负数）情况
++ $F(s)$包含$ K_1/(s-(alpha + j omega)) + K_2/(s-(alpha - j omega)) $
+  $ K_1 = (s-(alpha + j omega)) F(s)|_(s=alpha + j omega) = abs(K) e^(j phi_K) $
+  $ K_2 = K_1^* = (s-(alpha - j omega)) F(s)|_(s=alpha - j omega) = abs(K) e^(-j phi_K) $
+  $
+    f(t) = cal(L)^(-1) ((abs(K) e^(j phi_K))/(s-(alpha + j omega)) + (abs(K) e^(-j phi_K))/(s-(alpha - j omega))) =2 abs(K) e^(alpha t) cos(omega t + phi_K)
+  $
++ $F(s)$包含$ (K s + b)/(s^2 + a^2) = K_1 s/(s^2 + a^2) + K_2 a/(s^2 + a^2) $
+  $ f(t) = sqrt(K_1^2 + K_2^2) cos(omega t - arctan K_2 / K_1) $
+=== 重极点情况
+$ F(s) = K_11/(s-p_1) + K_12/(s-p_1)^2 + ... + K_(1 r)/(s-p_1)^r $
+$ K_(1 r) = (s-p_1)^r F(s)|_(s=p_1) $
+$ K_(1 (r - 1)) = d/(d s) [(s-p_1)^r F(s)]|_(s=p_1) $
+$ K_(1 (r - 2)) = 1/2! d^2/(d s^2) [(s-p_1)^r F(s)]|_(s=p_1) $
+$ dots.v $
+$ K_11 = 1/(r-1)! d^(r-1)/(d s^(r-1)) [(s-p_1)^r F(s)]|_(s=p_1) $
+$ f(t) = (K_11 + K_12 t + ... + 1/(r-1)! K_(1 r) t^(r-1))e^(p_1 t) $
+=== 含$e^(-s)$的非有理式
+$e^(-s)$不参加部分分式运算，求解时利用时域平移性质
+== 电路基本定律及电路元件的复频域性质
+=== 基尔霍夫定律的复频域性质
++ KCL
+  $ sum_(k=1)^n I_k (s) = 0 $
++ KVL
+  $ sum_(k=1)^n U_k (s) = 0 $
+=== 电路元件电压-电流关系的复频域形式
++ 电阻元件
+  $ U(s) = R I(s) $
++ 电容元件
+  $ I(s) = s C U(s) - C u(0_-) $
+  $s C$：运算容纳
+  $ U(s) = 1/(s C) I(s) + u(0_-)/s $
+  $1/(s C)$：运算容抗
++ 电感元件
+  $ U(s) = s L I(s) - L i(0_-) $
+  $s L$：运算感抗
+  $ I(s) = 1/(s L) U(s) + i(0_-)/s $
+  $1/(s L)$：运算感纳
++ 耦合电感元件
 
++ 独立电源
+  + 直流电源
+  + 交流电源
++ 受控源
+== 应用拉普拉斯变换分析动态电路
+=== 电路的复频域形式及运算阻抗和运算导纳
+=== 用运算法分析线性非时变动态电路
