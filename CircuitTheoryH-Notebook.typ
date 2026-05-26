@@ -1609,22 +1609,118 @@ $e^(-s)$不参加部分分式运算，求解时利用时域平移性质
 === 电路元件电压-电流关系的复频域形式
 + 电阻元件
   $ U(s) = R I(s) $
+  #align(center)[#image("assets/image-112.png")]
 + 电容元件
-  $ I(s) = s C U(s) - C u(0_-) $
+
   $s C$：运算容纳
-  $ U(s) = 1/(s C) I(s) + u(0_-)/s $
+  $ I(s) = s C U(s) - C u(0_-) $
+  #align(center)[#image("assets/image-113.png", width: 25%)]
   $1/(s C)$：运算容抗
+  $ U(s) = 1/(s C) I(s) + u(0_-)/s $
+  #align(center)[#image("assets/image-114.png", width: 25%)]
+  #colbreak()
 + 电感元件
-  $ U(s) = s L I(s) - L i(0_-) $
+
   $s L$：运算感抗
-  $ I(s) = 1/(s L) U(s) + i(0_-)/s $
+  $ U(s) = s L I(s) - L i(0_-) $
+  #align(center)[#image("assets/image-115.png", width: 30%)]
   $1/(s L)$：运算感纳
+  $ I(s) = 1/(s L) U(s) + i(0_-)/s $
+  #align(center)[#image("assets/image-116.png", width: 25%)]
 + 耦合电感元件
+  $ U(s) = s L I(s) - L i(0_-) $
+  $ mat(U_1 (s); U_2 (s)) = s mat(L_1 M; M L_2) mat(I_1 (s); I_2 (s)) - mat(L_1 M; M L_2) mat(i_1 (0_-); i_2 (0_-)) $
+  #align(center)[#image("assets/image-119.png", width: 35%)]
+  $ I(s) = 1/(s L) U(s) + i(0_-)/s $
+  $
+    mat(I_1 (s); I_2 (s)) = 1/s mat(Gamma_11 Gamma_12; Gamma_21 Gamma_22) mat(U_1 (s); U_2 (s)) + 1/s mat(i_1 (0_-); i_2 (0_-))
+  $
+  #align(center)[#image("assets/image-118.png", width: 60%)]
 
 + 独立电源
   + 直流电源
+    $ U_S -> U_S / s $
+    $ I_S -> I_S / s $
   + 交流电源
+    $ U_m sin(omega t + phi) -> U_m (s sin phi + omega cos phi) / (s^2 + omega^2) $
 + 受控源
+  #align(center)[#image("assets/image-117.png")]
 == 应用拉普拉斯变换分析动态电路
 === 电路的复频域形式及运算阻抗和运算导纳
++ 运算阻抗
+
+  对于一个处于零状态的无源一端口运算电路，
+  $ Z(s) = U(s) / I(s) $
+  - 电阻 $R$
+  - 运算感抗 $s L$
+  - 运算容抗 $1/(s C)$
++ 运算导纳
+
+  对于一个处于零状态的无源一端口运算电路，
+  $ Y(s) = I(s) / U(s) $
+  - 电导 $G$
+  - 运算感纳 $1 / (s L)$
+  - 运算容纳 $s C$
+#pagebreak()
 === 用运算法分析线性非时变动态电路
++ 电阻电路分析方法
+  + 戴维宁定理
+    #image("assets/image-109.png")
+    $U_(o c) (s)$是独立电源和原始状态等效电源共同作用下的开路电压
+
+    $Z_(e q) (s)$是双零条件下的等值运算阻抗
++ 求解步骤
+  + 运算电路
+  + 求解象函数
+  + 获得原函数
+#pagebreak()
+#align(left + horizon)[
+  #text(size: 2em, weight: "bold")[第三篇　稳态电路]
+]
+#pagebreak()
+= 正弦稳态电路分析
+== 正弦量与正弦稳态
+=== 正弦量
++ 三要素：振幅、角频率、初始相位
+  $ y(t) = A_m cos(omega t + phi) $
++ 频率和周期
+  $ f = 1 / T $
+  $ omega = (2 pi)/T = 2 pi f $
++ 相位差
+
+  同频率、同函数、同符号、主值范围内
+
+  规定：$abs(phi) <= 180 degree$
+  $ phi = phi_1 - phi_2 $
+  $i_1$超前$i_2$：$0 degree < phi < 180 degree$
+
+  $i_1$滞后$i_2$：$-180 degree < phi < 0 degree$
+
+  同相：$phi = 0 degree$
+
+  反相：$phi = 180 degree$
+
+  正交：$phi = plus.minus 90 degree$
+=== 正弦量的有效值和平均值
++ 有效值：与交流热效应相等的直流
+  $ I = I_m / sqrt(2) = 0.707 I_m $
+  $ U = U_m / sqrt(2) = 0.707 U_m $
++ 平均值：一个周期内绝对值的平均值
+  $ I_a = 2 / pi I_m = 0.637 I_m $
+  $ U_a = 2 / pi U_m = 0.637 U_m $
+== 相量变换
+=== 正弦量的相量表示
++ 代数表示
++ 几何表示
++ 相量表示
+
+=== 复数及其运算
+=== 相量变换性质
+== 电路定律和电路元件的相量形式
+== 阻抗和导纳
+== 正弦稳态电路的分析
+== 正弦稳态电路的功率
+== 正弦稳态网络函数和频率特性
+== RLC电路的谐振
+= 三相电路
+= 非正弦周期稳态电路分析
