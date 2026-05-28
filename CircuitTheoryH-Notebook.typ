@@ -1600,8 +1600,8 @@ $ K_11 = 1/(r-1)! d^(r-1)/(d s^(r-1)) [(s-p_1)^r F(s)]|_(s=p_1) $
 $ f(t) = (K_11 + K_12 t + ... + 1/(r-1)! K_(1 r) t^(r-1))e^(p_1 t) $
 === 含$e^(-s)$的非有理式
 $e^(-s)$不参加部分分式运算，求解时利用时域平移性质
-== 电路基本定律及电路元件的复频域性质
-=== 基尔霍夫定律的复频域性质
+== 电路基本定律及电路元件的复频域形式
+=== 基尔霍夫定律的复频域形式
 + KCL
   $ sum_(k=1)^n I_k (s) = 0 $
 + KVL
@@ -1612,19 +1612,19 @@ $e^(-s)$不参加部分分式运算，求解时利用时域平移性质
   #align(center)[#image("assets/image-112.png")]
 + 电容元件
 
-  $s C$：运算容纳
+  *运算容纳：*$s C$
   $ I(s) = s C U(s) - C u(0_-) $
   #align(center)[#image("assets/image-113.png", width: 25%)]
-  $1/(s C)$：运算容抗
+  *运算容抗：*$1/(s C)$
   $ U(s) = 1/(s C) I(s) + u(0_-)/s $
   #align(center)[#image("assets/image-114.png", width: 25%)]
   #colbreak()
 + 电感元件
 
-  $s L$：运算感抗
+  *运算感抗：*$s L$
   $ U(s) = s L I(s) - L i(0_-) $
   #align(center)[#image("assets/image-115.png", width: 30%)]
-  $1/(s L)$：运算感纳
+  *运算感纳：*$1/(s L)$
   $ I(s) = 1/(s L) U(s) + i(0_-)/s $
   #align(center)[#image("assets/image-116.png", width: 25%)]
 + 耦合电感元件
@@ -1649,18 +1649,16 @@ $e^(-s)$不参加部分分式运算，求解时利用时域平移性质
 === 电路的复频域形式及运算阻抗和运算导纳
 + 运算阻抗
 
-  对于一个处于零状态的无源一端口运算电路，
   $ Z(s) = U(s) / I(s) $
-  - 电阻 $R$
-  - 运算感抗 $s L$
-  - 运算容抗 $1/(s C)$
+  $ Z_R = R $
+  $ Z_C = 1/(s C) $
+  $ Z_L = s L $
 + 运算导纳
 
-  对于一个处于零状态的无源一端口运算电路，
   $ Y(s) = I(s) / U(s) $
-  - 电导 $G$
-  - 运算感纳 $1 / (s L)$
-  - 运算容纳 $s C$
+  $ Y_R = G $
+  $ Y_C = s C $
+  $ Y_L = 1/(s L) $
 #pagebreak()
 === 用运算法分析线性非时变动态电路
 + 电阻电路分析方法
@@ -1711,13 +1709,149 @@ $e^(-s)$不参加部分分式运算，求解时利用时域平移性质
 == 相量变换
 === 正弦量的相量表示
 + 代数表示
+  $ A_m cos(omega t + phi) = "Re"(A_m e^(j phi) e^(j omega t)) = "Re"(dot(A)_m e^(j omega t)) $
+  $dot(A) = A_m e^(j phi) = A_m angle phi$称相量
 + 几何表示
-+ 相量表示
+  #image("assets/image-120.png")
+  有向线段长度$=U_m$
 
+  有向线段与横轴夹角$=phi$
+
+  有向线段以速度$omega$逆时针旋转
+
+  实轴投影：$cos$
+
+  虚轴投影：$sin$
+
++ 相量表示
+  $ dot(U) = U e^(j phi) = U angle phi $
 === 复数及其运算
++ 复数
+  $ A = a + j b = r cos phi + j r sin phi = r e^(j phi) = r angle phi $
+
++ 复数运算
+  + 加减运算——代数形式
+    $ A_1 plus.minus A_2 = (a_1 plus.minus a_2) + j (b_1 plus.minus b_2) $
+  + 乘除运算——极坐标形式
+    $ A_1 A_2 = abs(A_1) abs(A_2) angle (phi_1 plus phi_2) $
+    $ A_1 / A_2 = abs(A_1) / abs(A_2) angle (phi_1 minus phi_2) $
+  + 共轭复数
+    $ A A^* = ("Re"A)^2 + ("Im"A)^2 = abs(A)^2 $
+    $ A + A^* = 2 "Re"A $
+    $ A - A^* = 2 j "Im"A $
+  + 旋转因子
+
+    $e^(j theta) = 1 angle theta$：逆时针旋转$theta$
+  + 旋转$90 degree$因子：$plus.minus j$
 === 相量变换性质
++ 线性性质
+  $ k_1 f_1(t) plus.minus k_2 f_2(t) <-> k_1 dot(F)_1(t) plus.minus k_2 dot(F)_2(t) $
++ 微分性质
+  $ (d f) / (d t) <-> j omega dot(F) $
+  $ d^n /(d t^n) f(t) <-> (j omega)^n dot(F) $
++ 积分性质
+  $ integral f d t <-> 1 / (j omega) dot(F) $
+  $ underbrace(integral dots integral, n) f(t) d t <-> 1 / (j omega)^n dot(F) $
 == 电路定律和电路元件的相量形式
+=== 基尔霍夫定律的相量形式
++ KCL
+  $ sum_(k=1)^n dot(I)_k = 0 $
++ KVL
+  $ sum_(k=1)^n dot(U)_k = 0 $
+=== 电路元件电压-电流关系的向量形式
++ 电阻元件
+  $ dot(U) = R dot(I) $
+  #align(center)[#image("assets/image-121.png")]
++ 电容元件
+  $ dot(U) = 1 / (j omega C) dot(I) = j X_C dot(I) $
+  #align(center)[#image("assets/image-122.png")]
+  *容抗：*$ X_C = - 1 / (omega C) $
+  *容纳：*$ B_C = omega C $
++ 电感元件
+  $ dot(U) = j omega L dot(I) = j X_L dot(I) $
+  #align(center)[#image("assets/image-123.png")]
+  *感抗：*$ X_L = omega L $
+  *感纳：*$ B_L = - 1 / (omega L) $
++ 耦合电感元件
+  $ mat(dot(U)_1; dot(U)_2) = j omega mat(L_1 M; M L_2) mat(dot(I)_1; dot(I)_2) $
+  $ mat(dot(I)_1; dot(I)_2) = 1/(j omega) mat(Gamma_11 Gamma_12; Gamma_21 Gamma_22) mat(dot(U)_1; dot(U)_2) $
+  #align(center)[#image("assets/image-124.png")]
+  三绕组的线性耦合电感元件
+  $
+    mat(dot(U)_1; dot(U)_2; dot(U)_3) = j omega mat(L_11 M_12 M_13; M_21 L_22 M_23; M_31 M_32 L_33) mat(dot(I)_1; dot(I)_2; dot(I)_3)
+  $
+=== 电路的相量模型
++ 符号电路
++ 不同频率信号
+
+  若电源含有不同频率的正弦量，利用叠加定理对每种频率成分分别建立相量模型。
 == 阻抗和导纳
+=== 阻抗和导纳
++ 阻抗
+  $ Z(j omega) = dot(U) / dot(I) =abs(Z) angle phi_Z = R + j X $
+  阻抗角：$phi_Z$ 电阻分量：$R$ 电抗分量：$X$
+  $ Z_R = R $
+  $ Z_C = 1 / (j omega C) = j X_C $
+  $ Z_L = j omega L = j X_L $
+  电容或电感只存在电抗分量
++ 导纳
+  $ Y(j omega) = dot(I) / dot(U) =abs(Y) angle phi_Y = G + j B $
+  导纳角：$phi_Y$ 电导分量：$G$ 电纳分量：$B$
+  $ Y_R = G $
+  $ Y_C = j omega C = j B_C $
+  $ Y_L = 1 / (j omega L) = j B_L $
+  电容或电感只存在电纳分量
++ 阻抗与导纳的关系
+  $ Z = 1 / Y $
+  $ R = G / (G^2 + B^2), X = - B / (G^2 + B^2) $
+  $ Y = 1 / Z $
+  $ G = R / (R^2 + X^2), B = - X / (R^2 + X^2) $
++ 阻抗的串联
+  $ Z = Z_1 + Z_2 $
+  分压公式：
+  $ dot(U)_1 = Z_1 / (Z_1 + Z_2) dot(U), dot(U)_2 = Z_2 / (Z_1 + Z_2) dot(U) $
++ 导纳的并联
+  $ Y = Y_1 + Y_2 $
+  分流公式：
+  $ dot(I)_1 = Y_1 / (Y_1 + Y_2) dot(I), dot(I)_2 = Y_2 / (Y_1 + Y_2) dot(I) $
+=== RLC串联电路
++ 相量法
+  $ Z = R + j (X_L + X_C) = sqrt(R^2 + (X_L + X_C)^2) angle arctan (X_L + X_C)/R $
+  $ U = abs(Z) I $
+  $ phi_u = phi_Z + phi_i $
+  感性：$X_L > abs(X_C) -> phi_Z > 0 -> phi_u > phi_i$
+
+  阻性：$X_L = abs(X_C) -> phi_Z = 0 -> phi_u = phi_i$
+
+  容性：$X_L < abs(X_C) -> phi_Z < 0 -> phi_u < phi_i$
+  #align(center)[#image("assets/image-125.png")]
++ 相量图
+  #grid(
+    columns: (50%, 50%),
+    rows: (auto, auto),
+    align: center,
+    image("assets/image-126.png"), image("assets/image-127.png", width: 65%),
+    [电压三角形], [阻抗三角形],
+  )
+=== GCL并联电路
++ 相量法
+  $ Y = G + j (B_C + B_L) = sqrt(G^2 + (B_C + B_L)^2) angle arctan (B_C + B_L)/G $
+  $ I = abs(Y) U $
+  $ phi_i = phi_Y + phi_u $
+  感性：$abs(B_L) > B_C -> phi_Y < 0 -> phi_i < phi_u$
+
+  阻性：$abs(B_L) = B_C -> phi_Y = 0 -> phi_i = phi_u$
+
+  容性：$abs(B_L) < B_C -> phi_Y > 0 -> phi_i > phi_u$
+  #align(center)[#image("assets/image-128.png")]
++ 相量图
+  #grid(
+    columns: (50%, 50%),
+    rows: (auto, auto),
+    align: center,
+    image("assets/image-129.png"), image("assets/image-130.png", width: 68%),
+    [电流三角形], [导纳三角形],
+  )
 == 正弦稳态电路的分析
 == 正弦稳态电路的功率
 == 正弦稳态网络函数和频率特性
