@@ -1898,22 +1898,222 @@ $
 + 复功率守恒性：在正弦稳态下，任意电路的复功率具有守恒性
   $ sum_(k=1)^b tilde(S)_k = 0 $
 === 最大功率传输定理
-+ 最大功率传输定理（直流电路）
++ 直流电路
 
   最大功率条件：$R_L = R_o$
 
-  最大功率：$P = U_(o c)^2 / (4 R_L)$
+  最大功率：$p = u_(o c)^2 / (4 R_L)$
 
   效率：$eta = 50%$
-+ 最大功率传输定理（正弦稳态电路）——负载电阻和电抗均可独立变化
++ 正弦稳态电路——负载电阻和电抗均可独立变化
 
-  最大功率条件：$R_L = R_o$和$X_L = -X_o$或者$Z_L = Z_o^*$
+  共轭匹配：$R_L = R_o "和" X_L = -X_o "或者" Z_L = Z_o^*$
 
   最大有功功率：$p = u_(o c)^2 / (4 R_L)$
 
   效率：$eta = 50%$
-+ 最大功率传输定理（正弦稳态电路）——
+  #note[][最大*有功*功率传输定理]
++ 正弦稳态电路—— 负载阻抗角固定而模可改变
+
+  模匹配：$abs(Z_L) = sqrt(R_o^2 + X_o^2)$
+
+  最大有功功率：$p = (u_(o c)^2 cos phi_L )/ (2 abs(Z_L) + 2 (R_o cos phi_L + X_o sin phi_L))$
+  #note[][模匹配最大功率$<$共轭匹配最大功率]
+=== 功率因数的提高
++ 功率因数$cos phi$
+
+  $phi$是电压与电流的相位差、阻抗角、功率因数角
+
+  $cos phi$是对电源利用程度的衡量
++ 功率因数$cos phi$低的危害
+  + 发电机设备的容量不能充分利用
+  + 增加输电线路的功率损耗
++ 功率因数$cos phi$低的原因
+  + 日常生活中多为感性负载
+  + 杂散电感
++ 功率因数$cos phi$的提高
+  + 原则：保证原负载的工作状态不变
+  + 措施：在感性负载两端并电容
+    #stack(dir: ltr, spacing: 1em, image("assets/image-133.png"), image("assets/image-135.png"))
++ 并联电容值的计算
+  $ C = P / (omega U^2) (tan phi_1 - tan phi) $
 == 正弦稳态网络函数和频率特性
+=== 正弦稳态网络函数
++ 网络函数
+  $ H(j omega) = (dot(Y)(j omega)) / (dot(W)(j omega)) $
+  $dot(W)(j omega)$为激励，$dot(Y)(j omega)$为响应
+  #stack(dir: ltr, h(1.7cm), image("assets/image-139.png"), h(3cm), image("assets/image-141.png"))
+  #align(center)[#image("assets/image-140.png")]
+=== 频率特性
++ 频率响应
+  $ H(j omega) = abs(H(j omega)) angle phi(omega) $
+  - 幅频特性：$abs(H(j omega))$与频率$omega$之间的关系特性
+  - 相频特性：$phi(omega)$与频率$omega$之间的关系特性
+  - 频率特性：网络函数在所有$omega$下的幅频特性和相频特性
++ 纯电阻电路
+  $ H(j omega) = H $
++ 一阶低通滤波电路（RC低通滤波电路）
+  #align(center)[#image("assets/image-134.png")]
+  固有频率：$omega_0 = 1/ (R C)$
+  $ H(j omega) = 1/sqrt(1 + (omega / omega_0)^2) angle - tan^(-1) omega/omega_0 $
+  #align(center)[#stack(dir: ltr, spacing: 1em, image("assets/image-136.png"), image("assets/image-137.png"))]
+  + 幅频特性：低通
+  + 相频特性：滞后网络
+  + 频率特性
+    - $omega = 0, H(0) = 1, P_2 = P_(2 max)$
+    - $omega = omega_0, H(omega_0) = 1/sqrt(2), P_2 = 1/2 P_(2 max)$
+    - $omega = oo, H(oo) = 0, P_2 = 0$
+    $omega_0$称为半功率频率，处于半功率点时$phi_(omega_0) = - 45 degree$
+    - $0 < omega < omega_0, 1/2 P_(2 max) < P_2 < P_(2 max)$，信号能通过电路
+    - $omega > omega_0, P_2 < 1/2 P_(2 max)$，信号不能通过电路
+    $omega_0$称为截止频率，$0 < omega < omega_0$称为滤波器通频带
++ 一阶高通滤波电路（RC高通滤波电路）
+  #align(center)[#image("assets/image-138.png")]
+  固有频率：$omega_0 = 1/ (R C)$
+  $ H(j omega) = (omega/omega_0) / (sqrt(1 + (omega/omega_0)^2)) angle pi / 2 - tan^(-1) omega / omega_0 $
+  #align(center)[#stack(dir: ltr, spacing: 1em, image("assets/image-142.png"), image(
+    "assets/image-143.png",
+    width: 38%,
+  ))]
+  + 幅频特性：高通
+  + 相频特性：超前网络
+  + 频率特性
+    - $omega = 0, H(0) = 0, P_2 = 0$
+    - $omega = omega_0, H(omega_0) = 1/sqrt(2), P_2 = 1/2 P_(2 max)$
+    - $omega = oo, H(oo) = 1, P_2 = P_(2 max)$
+    $omega_0$称为半功率频率，处于半功率点时$phi_(omega_0) = 45 degree$
+    - $0 < omega < omega_0, P_2 < 1/2 P_(2 max)$，信号不能通过电路
+    - $omega > omega_0, 1/2 P_(2 max) < P_2 < P_(2 max)$，信号能通过电路
+    $omega_0$称为截止频率，$omega > omega_0$称为滤波器通频带
++ 选频电路
+  + RC带通滤波器
+    #stack(dir: ltr, spacing: 1em, image("assets/image-144.png", width: 40%), image("assets/image-145.png"))
+  + RC带阻滤波器
+    #stack(dir: ltr, spacing: 1em, image("assets/image-146.png", width: 40%), image("assets/image-147.png"))
+  + RC双T电路
+    #stack(dir: ltr, spacing: 1em, image("assets/image-148.png", width: 40%), image("assets/image-149.png"))
++ RLC串联电路
+
+  谐振频率：$ omega_0 = 1/ sqrt(L C) $
+
+  品质因数：$ Q = (omega_0 L) / R = 1/(R omega_0 C)=1 / R sqrt(L / C) $
+  + 以电容电压为响应时
+    #image("assets/image-150.png")
+    - $omega / omega_0 = 0, abs(H_C (j omega)) = 1, phi_C (omega) = 0 degree$
+    - $omega / omega_0 = 1, abs(H_C (j omega)) = Q, phi_C (omega) = -90 degree$
+    - $omega / omega_0 = oo, abs(H_C (j omega)) = 0, phi_C (omega) = -180 degree$
+    低通滤波电路，截止频率$omega_C$满足$abs(H_C (j omega_C)) = 1 / sqrt(2)$
+  + 以电感电压为响应时
+    #image("assets/image-151.png")
+    - $omega / omega_0 = 0, abs(H_L (j omega)) = 0, phi_L (omega) = 180 degree$
+    - $omega / omega_0 = 1, abs(H_L (j omega)) = Q, phi_L (omega) = 90 degree$
+    - $omega / omega_0 = oo, abs(H_L (j omega)) = 1, phi_L (omega) = 0 degree$
+    高通滤波电路，截止频率$omega_L$满足$abs(H_L (j omega_L)) = 1 / sqrt(2)$
+  + 以电阻电压为响应时
+    #image("assets/image-152.png")
+    - $omega / omega_0 = 0, abs(H_R (j omega)) = 0, phi_R (omega) = 90 degree$
+    - $omega / omega_0 = 1, abs(H_R (j omega)) = 1, phi_R (omega) = 0 degree$
+    - $omega / omega_0 = oo, abs(H_R (j omega)) = 0, phi_R (omega) = -90 degree$
+    带通滤波电路，截止频率$omega_R$满足$abs(H_R (j omega_R)) = 1 / sqrt(2)$，通带宽度$Delta omega = omega_0 / Q$
+  + 以电感电压和电容电压之和为响应时
+    #image("assets/image-153.png")
+    - $omega / omega_0 = 0, abs(H_(L C) (j omega)) = 1, phi_(L C) (omega) = 0 degree$
+    - $omega / omega_0 = 1, abs(H_(L C) (j omega)) = 0$
+    - $omega / omega_0 = oo, abs(H_(L C) (j omega)) = 1, phi_(L C) (omega) = 0 degree$
+    带阻滤波电路，截止频率$omega_(L C)$满足$abs(H_(L C) (j omega_(L C))) = 1 / sqrt(2)$，阻带宽度$Delta omega = omega_0 / Q$
+=== s域网络函数与正弦稳态响应的关系
+$ s = j omega $
 == RLC电路的谐振
+谐振条件：端口电压和端口电流同向
+=== RLC电路的串联谐振
++ 谐振条件
+  - 电压与电流同相位
+  - 阻抗角$phi_Z = 0$
+  - 电抗$X = 0$
+  - 电抗电压$dot(U)_X = 0$
+  - 无功功率$Q = 0$
++ 谐振频率
+  $ omega_0 = 1/ sqrt(L C) $
++ 串联谐振的特点
+  + 电压谐振
+
+    电源只供应电阻的电压，电感、电容上的电压互相抵消
+
+  + 品质因数
+    $ Q = (omega_0 L) / R = 1/(R omega_0 C)=1 / R sqrt(L / C) $
+    $ U_L = U_C = Q U $
+    品质因数$Q$为电感、电容上的电压放大倍数，表征谐振质量
+  + 阻抗最小，呈阻性
+    $ Z = R $
+  + 电流最大
+    $ I_0 = U / R $
++ 功率与能量
+  + 功率
+    - $P = U I$，电源向电阻提供能量
+    - $Q = 0$，$Q_L$和$Q_C$大小相等，互相补偿
+  + 能量
+    $ w_L = 1/2 L I^2 (1 + cos 2 omega_0 t) $
+    $ w_C = 1/2 L I^2 (1 - cos 2 omega_0 t) $
+    $ W = w_L + w_c = L I^2 = C U_C^2 = C Q^2 U^2 $
+  + 品质因数
+    $ Q = 2 pi (L I^2)/(R I^2 T) = 2 pi "电路储存的电磁能量"/"电路一个周期内消耗的能量" $
++ 频率特性与谐振曲线
+  + 频率特性
+    - $omega < omega_0, abs(X_C) > X_L, Z$容性
+    - $omega = omega_0, abs(X_C) = X_L, Z$阻性
+    - $omega > omega_0, abs(X_C) < X_L, Z$感性
+    #image("assets/image-154.png")
+  + 电流谐振曲线
+    #image("assets/image-155.png")
+    $Q$越大，选择性越好
+
+    $omega_0$称中心频率，$omega_1$为下限截止频率，$omega_2$为上限截止频率，通频带$"BW" = omega_2 - omega_1$
+    $ "BW" = omega_0 / Q = R / L $
+  + 电压谐振曲线
+    #image("assets/image-156.png")
+    $Q$越大，$U_C$，$U_L$出现最大值的频率越靠近$omega_0$
+
+=== GCL电路的并联谐振
++ 谐振条件
+  - 电流与电压同相位
+  - 导纳角$phi_Y = 0$
+  - 电纳$B = 0$
+  - 电纳电流$dot(I)_B = 0$
+  - 无功功率$Q = 0$
++ 谐振频率
+  $ omega_0 = 1 / sqrt(L C) $
++ 并联谐振的特点
+  + 电流谐振
+
+    电源只供应电阻的电流，电感、电容回路中形成环流
+
+    $ Q = (omega_0 C) / G = 1 / (G omega_0 L) = 1 / G sqrt(C / L) $
+    $ I_L = I_C = Q I $
+  + 阻抗最大，呈阻性
+
+    $Z = R$
++ 功率与能量
+  $ Q = 2 pi "电路储存的电磁能量"/"电路一个周期内消耗的能量" $
++ 频率响应
+  $ "BW" = omega_0 / Q = G / C = 1 / (R C) $
+=== 谐振滤波器
++ 谐振滤波器
+  - LC串联谐振相当于短路
+  - LC并联谐振相当于开路
++ 滤波信号
+  #image("assets/image-157.png")
++ 选择信号
+  #image("assets/image-158.png")
+#note[][
+  有些电路既能串联谐振，又能并联谐振
+  #image("assets/image-159.png")
+  #image("assets/image-160.png")
+]
+#note[][
+
+  对纯电感、电容电路，
+  - $Z = 0$，串联谐振；$Z = infinity$，并联谐振
+  - $Y = 0$，并联谐振；$Y = infinity$，串联谐振
+]
 = 三相电路
 = 非正弦周期稳态电路分析
