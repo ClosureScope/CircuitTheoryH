@@ -2116,4 +2116,76 @@ $ s = j omega $
   - $Y = 0$，并联谐振；$Y = infinity$，串联谐振
 ]
 = 三相电路
+== 三相电路的基本概念
+=== 对称三相电源和对称三相负载
++ 三相电源
+  + 三相电压
+    $
+      cases(u_U = sqrt(2) U cos (omega t + phi), u_V = sqrt(2) U cos (omega t + phi - 120 degree), u_W = sqrt(2) U cos (omega t + phi + 120 degree))
+    $
+    $ cases(dot(U)_U = U angle phi, dot(U)_V = U angle (phi - 120 degree), dot(U)_W = U angle (phi + 120 degree)) $
+    $ u_U + u_V + u_W = 0 $
+    $ dot(U)_U + dot(U)_V + dot(U)_W = 0 $
+    对称三相电源：三相振幅和频率相同，相位依次相差$120 degree$
+  + 相序：各相电压经过极大值的先后次序
+    - 正序：U-V-W
+    - 负序：U-W-V
+    #image("assets/image-161.png")
+  + 旋转因子
+    $ a = 1 angle 120 degree $
++ 三相负载
+  - 单相负载：只需一相电源供电
+  - 三相负载：需三相电源同时供电
+    - 对称三相负载：$Z_U = Z_V = Z_W = Z$
+    - 不对称三相负载
++ 三相电路
+
+  对称三相电路=对称三相电源+对称三相负载
+=== 三相电路的连接方式
++ 星形联结
+  + 线电流与相电流
+    #align(center)[#image("assets/image-162.png")]
+    $ dot(I)_L = dot(I)_P $
+  + 线电压与相电压
+    #align(center)[#image("assets/image-163.png")]
+    $ dot(U)_L = sqrt(3) dot(U)_P angle 30 degree $
+    #align(center)[#image("assets/image-166.png")]
++ 三角形联结
+  + 线电压与相电压
+    #align(center)[#image("assets/image-164.png")]
+    $ dot(U)_L = dot(U)_P $
+  + 线电流与相电流
+    #align(center)[#image("assets/image-165.png")]
+    *对称负载下*
+    $ dot(I)_L = sqrt(3) dot(I)_P angle -30 degree $
+    #align(center)[#image("assets/image-167.png")]
+== 三相电路的计算
+=== 对称三相电路
++ 计算步骤
+  + Y-Y联结：一相计算法
+  + 电路中出现$Delta$形电源或负载：等效变换成Y-Y联结
++ Y-Y联结
+
+  对称三相电路中，
+  $ dot(U)_(N^' N) = 0 $
+  #align(center)[#image("assets/image-168.png")]
+  #note[][适用于三相四线制（中性线有阻抗），三相三线制（中性线无阻抗），三相三线制]
+  #note[][对称三相负载连接成星形时，中性线无电流]
++ 电源$Delta$联结
+  #align(center)[#image("assets/image-169.png")]
+  $ dot(U)_Y = 1/ sqrt(3) angle - 30 degree dot(U)_Delta $
++ 负载$Delta$联结
+  #align(center)[#image("assets/image-170.png", width: 70%)]
+  $ dot(Z)_Y = 1/3 dot(Z)_Delta $
+=== 复杂的对称三相电路
++ 基本步骤
+  + 等效变换为星形联结的电源或负载
+  + 将中性点短接，采用一相计算法
+  + 根据对称性直接写出其余两相
+#note[电源、负载分别单独变换][
+  #image("assets/image-171.png")]
+=== 不对称三相电路
++ 电源是三相对称的，负载是三相不对称的
++ 解题思路：求取$dot(U)_(N^' N)$，每相独立计算法
+== 三相电路的功率
 = 非正弦周期稳态电路分析
