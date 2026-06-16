@@ -1887,11 +1887,16 @@ $e^(-s)$不参加部分分式运算，求解时利用时域平移性质
   $ S = U I = I^2 abs(Z) = U^2 / abs(Z) = sqrt(P^2 + Q^2) $
   单位：伏安(V·A)，千伏安(kV·A)
   #align(center)[#image("assets/image-132.png")]
-$
-  P_R & = U I quad & Q_R & = 0 \
-  P_L & = 0 quad   & Q_L & = U I \
-  P_C & = 0 quad   & Q_C & = -U I
-$
+  $
+    P_R & = U I quad & Q_R & = 0 \
+    P_L & = 0 quad   & Q_L & = U I \
+    P_C & = 0 quad   & Q_C & = -U I
+  $
++ 功率表：测量平均功率
+  #image("assets/image-172.png")
+  电压、电流参考方向与同名端连接一致，读数$P = U I cos phi$
+
+  电压、电流参考方向与同名端连接不一致，读数$P = - U I cos phi$
 === 复功率
 + 复功率
   $ tilde(S) = P + j Q = U I angle phi = dot(U) dot(I)^* $
@@ -2187,5 +2192,86 @@ $ s = j omega $
 === 不对称三相电路
 + 电源是三相对称的，负载是三相不对称的
 + 解题思路：求取$dot(U)_(N^' N)$，每相独立计算法
+
+  负载各相电压：
+  $
+    cases(dot(U)_(U N^') = dot(U)_U - dot(U)_(N^' N), dot(U)_(V N^') = dot(U)_V - dot(U)_(N^' N), dot(U)_(W N^') = dot(U)_W - dot(U)_(N^' N))
+  $
+  中性点位移
+  #align(center)[#image("assets/image-173.png")]
++ 不接中线
+  $ dot(U)_(N^' N) = (dot(U)_U/Z_U + dot(U)_V/Z_V + dot(U)_W/Z_W)/(1/Z_U + 1/Z_V + 1/Z_W) $
++ 接上中线
+  + 中线无阻抗
+    $ dot(U)_(N^' N) = 0 $
+  + 中线有阻抗
+    $ dot(U)_(N^' N) = (dot(U)_U/Z_U + dot(U)_V/Z_V + dot(U)_W/Z_W)/(1/Z_U + 1/Z_V + 1/Z_W + 1/Z_N) $
+#note[][对称三相负载与不对称三相负载相互独立]
+=== 相序测定器
+#image("assets/image-174.png")
+电容连接U相时，灯泡较亮的为V相，灯泡较暗的为W相
 == 三相电路的功率
+=== 三相电路功率的基本概念
++ 三相电路的瞬时功率
+  $ p = p_U + p_V + p_W $
+  *对称三相电路*
+  $ p = 3 U_P I_P cos phi $
++ 三相电路的平均功率
+  $ P = P_U + P_V + P_W $
+  *对称三相电路*
+  $ P = 3 U_P I_P cos phi_P = sqrt(3) U_L I_L cos phi_P $
+  #note[][$phi_P$必须为相电压与相电流的相位差]
++ 三相电路的无功功率
+  $ Q = Q_U + Q_V + Q_W $
+  *对称三相电路*
+  $ Q = 3 U_P I_P sin phi_P = sqrt(3) U_L I_L sin phi_P $
++ 三相电路的表观功率
+  $ S = sqrt(P^2 + Q^2) = sqrt((P_U + P_V + P_W)^2 + (Q_U + Q_V + Q_W)^2) $
+  *对称三相电路*
+  $ S = 3 U_P I_P = sqrt(3) U_L I_L $
++ 三相电路的功率因数
+  $ cos phi^' = P / S $
+  *对称三相电路*
+  $ cos phi^' = cos phi_P $
+=== 三相电路功率的测量
+#note[解题思路][使用相量图求出$psi$与$phi$的关系]
++ 一功率表法：三相四线制，对称负载
+  #image("assets/image-175.png")
+  功率表读数：$P_W = U_P I_P cos psi = U_P I_P cos phi$
+
+  $P = 3 P_W$
++ 二功率表法：三相三线制，任意负载
+  #image("assets/image-176.png")
+  功率表1读数：$P_1 = U_(U W) I_U cos psi_1$
+
+  功率表2读数：$P_2 = U_(V W) I_V cos psi_2$
+
+  $P =P_1 + P_2$
+
+  *对称负载下*
+
+  $Q = sqrt(3)(P_1 - P_2)$
+
+  $phi_Z = arctan Q/P = arctan sqrt(3) (P_1-P_2)/(P_1+P_2)$
+
+  逆序时，$Q = sqrt(3)(P_2 - P_1)$
++ 三功率表法：三相四线制，任意负载
+  #image("assets/image-177.png")
+  $P = P_1 + P_2 + P_3$
 = 非正弦周期稳态电路分析
+== 非正弦周期波形的傅里叶级数展开
+$ f(t) = A_0 + sum_(k=1)^oo (A_(m k) cos k omega t + B_(m k) sin k omega t) $
+== 非正弦周期波形的有效值、功率
+$U = sqrt(U_0^2 + U_1^2 + U_2^2 + dots + U_k^2 + dots)$
+
+$I = sqrt(I_0^2 + I_1^2 + I_2^2 + dots + I_k^2 + dots)$
+
+$P = U_0 I_0 + U_1 I_1 cos phi_1 + U_2 I_2 cos phi_2 + dots$
+
+$Q = U_1 I_1 sin phi_1 + U_2 I_2 sin phi_2 + dots$
+
+$S = U I$
+
+$cos phi = P / S$
+
+$T = sqrt(S^2 - (P^2 + Q^2))$ （畸变功率）
