@@ -1494,24 +1494,19 @@ $ y(t) = integral_0^t f(tau) h(t - tau) d tau $
 #note[][多储能元件中，计算时间常数时可以从电阻看进去求等效电容/电感]
 == 二阶动态电路的响应
 === 二阶RLC电路的零输入响应
-+ 二阶微分方程求解
-  #align(center)[#image("assets/image-107.png")]
-  $ L C (d^2 i_L) / (d t^2) + L / R (d i_L)/(d t) + i_L = 0 $
-  特征根（实部恒负）：
-  $ s_(1, 2) = - alpha + sqrt(alpha^2 - omega^2) $
+特征根（实部恒负）：
+$ s_(1, 2) = - alpha + sqrt(alpha^2 - omega_0^2) $
++ RLC并联电路
+
   衰减系数：$ alpha = 1/(2 R C) $
   谐振频率：$ omega_0 = 1 / sqrt(L C) $
-+ 零输入响应
-#align(center)[
-  #grid(
-    columns: (28%, 25%),
-    gutter: 2em,
-    align: center + horizon,
-    image("assets/image-108.png"), image("assets/image-110.png"),
-    [过阻尼/临界阻尼], [欠阻尼],
-  )
-]
-#align(center)[#image("assets/image-111.png")]
+
+  #align(center)[#image("assets/image-111.png")]
++ RLC串联电路
+
+  衰减系数：$ alpha = R / (2 L) $
+  谐振频率：$ omega_0 = 1 / sqrt(L C) $
+
 = 动态电路的复频域分析
 == 拉普拉斯变换及其性质
 === 拉普拉斯变换的定义
