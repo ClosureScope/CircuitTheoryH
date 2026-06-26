@@ -2052,7 +2052,7 @@ $ s = j omega $
   + 能量
     $ w_L = 1/2 L I^2 (1 + cos 2 omega_0 t) $
     $ w_C = 1/2 L I^2 (1 - cos 2 omega_0 t) $
-    $ W = w_L + w_c = L I^2 = C U_C^2 = C Q^2 U^2 $
+    $ W = w_L + w_C = L I^2 = C U_C^2 = C Q^2 U^2 $
   + 品质因数
     $ Q = 2 pi (L I^2)/(R I^2 T) = 2 pi "电路储存的电磁能量"/"电路一个周期内消耗的能量" $
 + 频率特性与谐振曲线
@@ -2208,7 +2208,7 @@ $ s = j omega $
 + 三相电路的瞬时功率
   $ p = p_U + p_V + p_W $
   *对称三相电路*
-  $ p = 3 U_P I_P cos phi $
+  $ p = 3 U_P I_P cos phi_P $
 + 三相电路的平均功率
   $ P = P_U + P_V + P_W $
   *对称三相电路*
