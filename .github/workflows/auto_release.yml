@@ -1,71 +1,13 @@
 name: Auto-Compile and Release PDF
 
+# 全部逻辑在 ClosureScope/NotesCI 里维护，此文件无需修改。
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 jobs:
-  build-and-release:
-    runs-on: ubuntu-latest
+  build:
+    uses: ClosureScope/NotesCI/.github/workflows/typst-release.yml@main
     permissions:
       contents: write
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Typst
-        uses: typst-community/setup-typst@v4
-
-      - name: Install Fonts
-        run: |
-          mkdir -p ~/.local/share/fonts
-
-          # Noto Serif SC — all weights
-          for weight in ExtraLight Light Regular Medium SemiBold Bold; do
-            wget -q -O ~/.local/share/fonts/NotoSerifSC-${weight}.otf \
-              "https://github.com/notofonts/noto-cjk/raw/main/Serif/SubsetOTF/SC/NotoSerifSC-${weight}.otf"
-          done
-
-          # Noto Sans SC — all weights
-          for weight in Thin Light Regular Medium Bold Black; do
-            wget -q -O ~/.local/share/fonts/NotoSansSC-${weight}.otf \
-              "https://github.com/notofonts/noto-cjk/raw/main/Sans/SubsetOTF/SC/NotoSansSC-${weight}.otf"
-          done
-
-          # FandolKai
-          wget -q -O /tmp/fandol.zip "https://mirrors.ctan.org/fonts/fandol.zip"
-          unzip -qo /tmp/fandol.zip "fandol/FandolKai-Regular.otf" -d /tmp/
-          cp /tmp/fandol/FandolKai-Regular.otf ~/.local/share/fonts/
-
-          # Libertinus Serif — Regular + Bold + Semibold for headings
-          wget -q -O /tmp/Libertinus.tar.xz "https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.tar.xz"
-          tar -xJf /tmp/Libertinus.tar.xz -C /tmp/ \
-            "Libertinus-7.040/static/OTF/LibertinusSerif-Regular.otf" \
-            "Libertinus-7.040/static/OTF/LibertinusSerif-Bold.otf" \
-            "Libertinus-7.040/static/OTF/LibertinusSerif-Semibold.otf" \
-            "Libertinus-7.040/static/OTF/LibertinusSerif-Italic.otf" \
-            "Libertinus-7.040/static/OTF/LibertinusSerif-BoldItalic.otf" \
-            "Libertinus-7.040/static/OTF/LibertinusSerif-SemiboldItalic.otf"
-          cp /tmp/Libertinus-7.040/static/OTF/LibertinusSerif-*.otf ~/.local/share/fonts/
-
-          fc-cache -fv
-
-      - name: Compile Typst to PDF
-        run: typst compile CircuitTheoryH-Notebook.typ
-
-      - name: Generate Automated Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: latest
-          name: "Latest Notes"
-          body: |
-            This is an automated build of the latest notes.
-            Last updated: ${{ github.event.head_commit.timestamp }}
-          files: |
-            *.pdf
-          make_latest: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
