@@ -5,7 +5,7 @@
 #show emph: text.with(font: (font-en, font-kai), style: "normal")
 #show: frame-style(styles.hint)
 #show: ilm.with(
-  title: [电路理论],
+  title: [电路理论（荣誉）],
   author: "Closure",
   // abstract: [Default Abstract],
   // bibliography: bibliography("../My Library.bib", style: "ieee"),
